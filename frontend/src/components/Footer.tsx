@@ -16,6 +16,7 @@ const Footer = () => {
     register,
     handleSubmit,
     setError,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<subscribeFormData>({
     resolver: zodResolver(subscribeFormSchema),
@@ -36,6 +37,10 @@ const Footer = () => {
       if (response.id) {
         toast.success("Success added to newsletter.");
       }
+
+      reset({
+        email: "",
+      });
     } catch (err: any) {
       if (err.data?.email) {
         setError("email", { message: err.data?.email[0] });

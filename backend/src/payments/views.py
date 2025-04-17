@@ -183,8 +183,8 @@ class PaymentCallback(APIView):
             }
 
             try:
-                # vote_count = int(int(amount) / 1000)
-                vote_count = 30
+                vote_count = int(int(amount) / 1000)
+                # vote_count = 30
                 payment_obj = get_object_or_404(
                     Payment, order_tracking_id=order_tracking_id)
 

@@ -5,6 +5,7 @@ import { notFoundImg } from "@/assets";
 import { TYEventPost, TYPaginate } from "@/lib/types";
 import { formatDateToISOString } from "@/lib/utils";
 import { callApi } from "@/lib/callApi";
+import { AudioLines, CalendarCheck2 } from "lucide-react";
 
 export const EventPost: React.FC<TYEventPost> = ({ ...event }) => {
   return (
@@ -28,7 +29,17 @@ export const EventPost: React.FC<TYEventPost> = ({ ...event }) => {
 
           <div className="mt-5 flex items-center space-x-4 font-chealse">
             <span>{formatDateToISOString(event.created_at)}</span>
-            <span className="text-red-500 font-chealse">current</span>
+            {event.is_done ? (
+              <div className="text-red-500  flex items-center space-x-2">
+                <CalendarCheck2 className="stroke-current stroke-2 h-6 w-6 block" />
+                <span className="font-chealse">Ended</span>
+              </div>
+            ) : (
+              <div className="text-green-500 font-chealse flex items-center space-x-2">
+                <AudioLines className="stroke-current stroke-3 fill-current h-6 w-6 block" />
+                <span className="font-chealse">Current</span>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -118,15 +129,15 @@ const EventPosts = () => {
 
       <section className="mt-10">
         {loading ? (
-          Array.from({ length: 2 }).map((_, i) => (
-            <div className="grid lg:grid-cols-2 w-full gap-10 ">
-              <EventPostSkeleton key={`event-${i}`} />
-            </div>
-          ))
+          <div className="grid lg:grid-cols-2 w-full gap-10 ">
+            {Array.from({ length: 2 }).map((_, i) => (
+              <EventPostSkeleton key={`Ev_Sk_-${i}`} />
+            ))}
+          </div>
         ) : events && events.results && events?.results.length ? (
           <div className="grid w-full gap-10 ">
             {events.results.map((event) => (
-              <EventPost {...event} key={event.slug} />
+              <EventPost {...event} key={`Ev_${event.slug}`} />
             ))}
           </div>
         ) : (

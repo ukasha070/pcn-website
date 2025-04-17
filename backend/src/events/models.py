@@ -10,7 +10,7 @@ from blogs.models import Tag
 
 class Event(models.Model):
     title = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True, blank=True, max_length=300)
     description = models.TextField()
     content = MDTextField(default="django")
     tags = models.ManyToManyField(Tag, related_name='events_post')

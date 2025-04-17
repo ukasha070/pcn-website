@@ -4,6 +4,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { callApi } from "@/lib/callApi";
 import { SpinnerLoader } from "@/components";
+import { ShieldAlert } from "lucide-react";
 
 const Callback = () => {
   const [searchParams] = useSearchParams();
@@ -52,16 +53,22 @@ const Callback = () => {
     }
   }, []);
   return loading ? (
-    <div className="fixed top-0 left-0 h-screen w-screen bg-accent flex items-center justify-center">
-      <div className="w-fit flex flex-col items-center justify-center">
-        <SpinnerLoader className="h-10 w-10" />
-        <h3 className="mb-2">Verifing Your Payment</h3>
-        <span className="mb-2 max-w-xl text-center px-6">
-          After verifing your payment we will be able to send a confirmation
-          email and votes will be added automaticatically thanks.
-        </span>
+    <>
+      <div>
+        <ShieldAlert />
       </div>
-    </div>
+
+      <div className="fixed top-0 left-0 h-screen w-screen bg-accent items-center justify-center hidden">
+        <div className="w-fit flex flex-col items-center justify-center">
+          <SpinnerLoader className="h-10 w-10" />
+          <h3 className="mb-2">Verifing Your Payment</h3>
+          <span className="mb-2 max-w-xl text-center px-6">
+            After verifing your payment we will be able to send a confirmation
+            email and votes will be added automaticatically thanks.
+          </span>
+        </div>
+      </div>
+    </>
   ) : (
     <div className="flex fixed top-0 left-0 w-full items-center justify-center min-h-screen bg-gradient-to-r from-accent to-yellow-50 dark:from-primary dark:to-primary/90">
       <div className="w-full max-w-2xl p-4 bg-primary-foreground shadow-2xl dark:bg-primary-900 sm:p-10 sm:rounded-3xl">

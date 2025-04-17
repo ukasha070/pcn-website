@@ -142,6 +142,7 @@ const Comments: React.FC<Props> = ({ blogSlug }) => {
     register,
     handleSubmit,
     setError,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<commentFormData>({
     resolver: zodResolver(commentFormSchema),
@@ -169,6 +170,11 @@ const Comments: React.FC<Props> = ({ blogSlug }) => {
             }
           : null
       );
+      reset({
+        comment_msg: "",
+        full_name: "",
+        user_email: "",
+      });
     } catch (error) {
       setError("root", { message: JSON.stringify(error) });
       console.error("Error happened: ", error);
@@ -321,7 +327,7 @@ const Comments: React.FC<Props> = ({ blogSlug }) => {
           <div>
             <div className="flex flex-col space-y-5 max-h-[80vh] overflow-y-auto">
               {comments.results.map((comment, i) => (
-                <Comment {...comment} setReply={setReply} key={i} />
+                <Comment {...comment} setReply={setReply} key={`Co_Sk_${i}`} />
               ))}
             </div>
 
@@ -337,7 +343,9 @@ const Comments: React.FC<Props> = ({ blogSlug }) => {
         )}
 
         {loading &&
-          Array.from({ length: 2 }).map((_, i) => <CommentSkeleton key={i} />)}
+          Array.from({ length: 2 }).map((_, i) => (
+            <CommentSkeleton key={`Co_Sk_${i}`} />
+          ))}
       </div>
     </section>
   );

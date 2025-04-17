@@ -67,7 +67,9 @@ const BlogDetailPage = () => {
           href="https://www.prosfyges-christian-network.org/blogs"
         />
       </Helmet>
+
       <Navbar />
+
       <Container>
         {loading ? (
           <div role="status" className="max-w-2xl animate-pulse">
@@ -127,7 +129,7 @@ const BlogDetailPage = () => {
 
             <p className="block mt-5">{post?.description}</p>
 
-            <div className="h-16">
+            <div className="py-5">
               <div className="flex flex-wrap items-center gap-x-4 text-sm">
                 <time dateTime={post?.created_at} className="text-gray-500">
                   {formatDateToISOString(post?.created_at || "")}
@@ -137,15 +139,15 @@ const BlogDetailPage = () => {
                   to="comment-wrapper"
                   smooth={true}
                   duration={500}
-                  className="h-10 w-fit px-4 border rounded-full flex items-center hover:text-primary-foreground cursor-pointer hover:bg-primary duration-300 ease-in"
+                  className="py-5 w-fit px-4 border rounded-full flex items-center hover:text-primary-foreground cursor-pointer hover:bg-primary duration-300 ease-in"
                 >
                   <span>Comments</span>
                 </SrcollLink>
 
                 {post?.tags?.map((tag) => (
                   <p
-                    key={tag.slug}
-                    className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
+                    key={`Ta_${tag.slug}`}
+                    className="relative z-10 rounded-full px-3 py-1.5 font-medium"
                   >
                     {tag.name}
                   </p>
@@ -158,13 +160,13 @@ const BlogDetailPage = () => {
                 <img
                   alt={post?.author.name}
                   src={post?.author.profile_picture}
-                  className="size-10 rounded-full bg-gray-50"
+                  className="size-12 rounded-full bg-accent"
                 />
-                <h4 className="font-semibold text-gray-900 capitalize text-lg">
+                <h4 className="font-semibold text-primary capitalize text-lg">
                   <span className="" />
                   {post?.author.name}
                 </h4>
-                <p className="text-gray-600">{post?.author.role}</p>
+                <p className="text-primary/60">{post?.author.role}</p>
               </div>
             </div>
 

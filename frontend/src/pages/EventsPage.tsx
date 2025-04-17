@@ -93,7 +93,7 @@ const EventsPage = () => {
         {/* /// blogs */}
         <div className="my-10">
           {loading ? (
-            <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 gap-8 lg:mx-0">
               {Array.from({ length: 2 }).map((_, i) => (
                 <EventPostSkeleton key={i} />
               ))}

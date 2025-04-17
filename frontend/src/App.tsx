@@ -13,12 +13,15 @@ import {
   EventCandidateDetailsPage,
 } from "./pages";
 
-import { Footer } from "./components";
+import { Footer, ScrollToTop } from "./components";
 import { Toaster } from "react-hot-toast";
+
 function App() {
   return (
     <>
       <Toaster position="top-right" reverseOrder={false} />
+      <ScrollToTop />
+
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/search/" element={<SearchPage />} />

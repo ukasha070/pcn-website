@@ -9,7 +9,7 @@ import arseneKakaImg from "./users/arsene-kaka.jpeg";
 import ukashaHacksImg from "./users/ukasha-hacks.jpeg";
 import kimzImg from "./users/kimz.jpeg";
 
-export { default as bgImage } from "./IMG-18.jpg";
+export { default as bgImage } from "./bg-image.jpg";
 
 export {
   logo,

@@ -27,7 +27,7 @@ ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 export function AnlyticsTab() {
   const { eventSlug } = useParams();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [candidates, setCandidates] = useState<TYCandidate[]>([]);
   const [graphData, setGraphData] = useState<{
     data: number[];
@@ -99,13 +99,6 @@ export function AnlyticsTab() {
 
   return (
     <div>
-      <div
-        className="my-5 pl-5
-        <"
-      >
-        <h3>This is the votes graph view properly</h3>
-      </div>
-
       {loading ? (
         <div>
           <SpinnerLoader className="h-5 w-5" />
@@ -113,8 +106,10 @@ export function AnlyticsTab() {
       ) : candidates.length ? (
         <Bar data={data} options={options} />
       ) : (
-        <div className="w-full h-fit pt-10 flex items-start justify-start flex-col">
-          <h1 className="font-black text-2xl pb-2">Graph data not available</h1>
+        <div className="w-full h-fit pt-10 flex items-start justify-start flex-col p-4">
+          <h1 className="font-black text-base pb-2">
+            Graph data not available
+          </h1>
           <ul className="list-disc pl-5 flex flex-col gap-2">
             <li>I think there are no Candidates</li>
             <li>Error happened</li>
@@ -132,7 +127,7 @@ export function AnlyticsTab() {
 
 export function CandidatesTab() {
   const { eventSlug } = useParams();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [candidates, setCandidates] = useState<TYCandidate[]>([]);
 
   useEffect(() => {
@@ -166,7 +161,9 @@ export function CandidatesTab() {
         </div>
       ) : !loading && !candidates?.length ? (
         <div className="w-full h-fit flex items-start justify-start flex-col">
-          <h1 className="font-black text-2xl pb-2">No candidate found...</h1>
+          <h1 className="font-primary/80 text-2xl pb-2">
+            Candidates not found...
+          </h1>
 
           <div className="flex items-center flex-wrap">
             <img src={notFoundImg} className="w-24 h-24" alt="" />
@@ -187,7 +184,7 @@ export function CandidatesTab() {
 const EventDetailsPage = () => {
   const tabs = ["Content", "Candidates", "Anlytics"];
 
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [event, setEvent] = useState<TYEventPost | null>(null);
   const [activeTab, setActiveTab] = useState<number>(
     localStorage.getItem("currentEventTab")
@@ -289,7 +286,7 @@ const EventDetailsPage = () => {
           </div>
         ) : (
           <section>
-            <ul className="flex flex-wrap text-sm font-medium text-center text-primary/70">
+            <ul className="flex flex-wrap text-sm font-medium text-center text-primary/70 py-2">
               {tabs.map((tab, index: number) => (
                 <button
                   key={index}
@@ -317,7 +314,7 @@ const EventDetailsPage = () => {
 
                   <p className="block mt-5 text-lg">{event?.description}</p>
 
-                  <div className="my-5">
+                  <div className="my-5 py-5">
                     <div className="flex flex-wrap items-center gap-x-4 text-sm">
                       <div className="flex items-center text-gray-500">
                         <div>

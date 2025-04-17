@@ -105,13 +105,13 @@ const BlogsPage = () => {
           {loading ? (
             <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-10">
               {Array.from({ length: 3 }).map((_, i) => (
-                <BlogPostSkeleton key={`blog-skeleton-${i}`} />
+                <BlogPostSkeleton key={`Bl_Sk_${i}`} />
               ))}
             </div>
           ) : posts && posts.results && posts?.results.length ? (
             <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none xl:grid-cols-3">
               {posts?.results.map((post) => (
-                <BlogPost {...post} key={post.slug} />
+                <BlogPost {...post} key={`Bl_${post.slug}`} />
               ))}
             </div>
           ) : (

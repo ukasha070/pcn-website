@@ -9,6 +9,7 @@ import { Button } from "./ui/button";
 import Container from "./Container";
 import { callApi } from "@/lib/callApi";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { extractImageSrcsFromHTML } from "@/lib/utils";
 
 interface TimeLeft {
   days: number;
@@ -40,15 +41,23 @@ const Hero = () => {
 
     return { days, hours, minutes, seconds };
   };
-
+  const [index, setIndex] = useState(0);
+  const [eventHtml, setEventHtml] = useState<string>("");
   const [event, setEvent] = useState<TYEventPost>();
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft);
+  const [images, setImages] = useState<string[]>([]);
 
   useEffect(() => {
     async function fetchBlogs() {
       try {
-        const response = await callApi({ endpoint: "events/latest/" });
+        const response = await callApi<TYEventPost>({
+          endpoint: "events/latest/",
+        });
         setEvent(response);
+        setEventHtml(response.content_html ? response.content_html : "");
+        if (response.thumbnail) {
+          setImages((prev) => [...prev, response.thumbnail]);
+        }
       } catch (error) {
         console.error("Error fetching blog posts:", error);
       }
@@ -65,6 +74,29 @@ const Hero = () => {
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, [event]);
 
+  useEffect(() => {
+    if (eventHtml) {
+      var imageFromHtml = extractImageSrcsFromHTML(eventHtml);
+      setImages((prev) => [...prev, ...imageFromHtml]);
+    }
+  }, [eventHtml]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 10000); // 10000 ms = 10 seconds
+
+    return () => clearInterval(interval); // cleanup
+  }, [images.length]);
+
+  const nextImage = () => {
+    setIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+  };
+
   return (
     <Container className="h-fit relative bg-primary/50 overflow-hidden">
       <div className="z-20 h-full w-full flex items-center justify-start text-primary-foreground">
@@ -76,6 +108,7 @@ const Hero = () => {
               Prosfyges Christian Network
             </h1>
           </div>
+
           {event && (
             <>
               <Link to={`/events/${event.slug}/`}>
@@ -145,27 +178,38 @@ const Hero = () => {
           )}
 
           <div className="flex  items-center w-fit space-x-4 mt-10">
-            <Button className="aspect-square h-12 cursor-pointer hover:bg-primary/70 duration-300 bg-primary">
+            <Button
+              type="button"
+              onClick={prevImage}
+              className="aspect-square h-12 cursor-pointer hover:bg-primary/70 duration-300 bg-primary"
+            >
               <ChevronLeft className="h-5 w-5" />
             </Button>
-            <Button className="aspect-square h-12 cursor-pointer hover:bg-primary/70 duration-300 bg-primary">
+            <Button
+              type="button"
+              onClick={nextImage}
+              className="aspect-square h-12 cursor-pointer hover:bg-primary/70 duration-300 bg-primary"
+            >
               <ChevronRight className="h-5 w-5" />
             </Button>
           </div>
         </div>
       </div>
 
-      <div className="absolute h-full w-full bg-red-500 px-0 left-0 top-0 object-cover -z-10">
+      <div className="absolute h-full w-full px-0 left-0 top-0 object-cover -z-10">
         {event ? (
           <img
-            src={event.thumbnail}
-            alt="imag"
-            className="w-full h-full object-cover"
+            src={images[index]}
+            alt={event.title}
+            className="w-full h-full object-cover duration-300"
           />
         ) : (
-          ""
+          <img
+            src={bgImage}
+            alt="hero bg-image"
+            className="w-full h-full object-cover"
+          />
         )}
-        <img src={bgImage} alt="imag" className="w-full h-full object-cover" />
       </div>
     </Container>
   );

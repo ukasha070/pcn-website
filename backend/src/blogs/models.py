@@ -16,7 +16,7 @@ class Tag(models.Model):
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, max_length=300)
     description = models.TextField()
     content = MDTextField()
     thumbnail = models.ImageField(upload_to='blog_thumbnails/')

@@ -133,7 +133,11 @@
     @apply font-serif text-xl  
   }
 
-  article#markdown-content p:first-of-type::first-letter {
+  #markdown-content img{
+    @apply w-[85%] aspect-video mx-auto md:w-[75%]  
+  }
+
+  article#markdown-content > p:first-of-type::first-letter {
     @apply text-5xl font-bold float-left mr-2 leading-none;
   }
 

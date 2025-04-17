@@ -237,7 +237,7 @@ const AboutUs = () => {
         </div>
       </section> */}
 
-      <div className="animate-onscroll">
+      <div className="animate-onscroll mt-10">
         <h1 className="font-black text-xl pb-2">Mission</h1>
         <span className="w-[4rem] rounded-full h-[.2rem] bg-primary block mb-10"></span>
 

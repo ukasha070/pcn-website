@@ -84,7 +84,7 @@ const VotePaymentForm: React.FC<props> = ({
             >
               <option value={0}>--- select candidate</option>
               {candidates?.map((candidate) => (
-                <option key={candidate.slug} value={candidate.slug}>
+                <option key={`Op_${candidate.slug}`} value={candidate.slug}>
                   {candidate.full_name}
                 </option>
               ))}

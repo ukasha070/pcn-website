@@ -20,14 +20,13 @@ const ContactUs = () => {
     register,
     handleSubmit,
     setError,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
   });
 
   async function onSubmit(data: ContactFormData) {
-    console.log(data);
-
     try {
       const response = await callApi({
         endpoint: "contact/",
@@ -38,6 +37,11 @@ const ContactUs = () => {
       if (response.sender_name) {
         toast.success("Your Message was sent successfully.");
       }
+      reset({
+        sender_email: "",
+        sender_name: "",
+        message: "",
+      });
     } catch (err: any) {
       if (err.data.sender_email) {
         setError("sender_email", { message: err.data.sender_email[0] });

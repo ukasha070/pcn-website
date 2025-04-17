@@ -58,3 +58,22 @@ export function extractReplyID(comment: string): number | null {
   const match = comment.match(/Reply\s+(\d+)/i);
   return match ? parseInt(match[1], 10) : null;
 }
+
+export function extractImageSrcsFromHTML(html: string): string[] {
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = html;
+
+  const images = tempDiv.querySelectorAll("img");
+  const imageSrcs: string[] = [];
+
+  for (let i = 0; i < images.length; i++) {
+    const src = images[i].getAttribute("src");
+    if (src) {
+      imageSrcs.push(src.trim()); // Push to the array if a valid src is found
+    }
+  }
+
+  // console.log(imageSrcs);
+
+  return imageSrcs;
+}

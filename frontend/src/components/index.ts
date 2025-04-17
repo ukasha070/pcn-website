@@ -15,3 +15,4 @@ export { default as SpinnerLoader } from "./SpinnerLoader";
 export { default as EventPostSkeleton } from "./EventPosts";
 export { default as CandidateSkeleton } from "./Candidates";
 export { default as VotePaymentForm } from "./VotePaymentForm";
+export { default as ScrollToTop } from "./ScrollToTop";

@@ -18,7 +18,7 @@ import { formatDateToISOString } from "@/lib/utils";
 export const BlogPost: React.FC<TYBlogPost> = ({ ...post }) => {
   return (
     <article
-      id={`blog-${post.slug}`}
+      key={`blog-${post.slug}`}
       className="flex max-w-xl flex-col items-start justify-between px-5 animate-onscroll"
     >
       <div className="flex items-center gap-x-4 text-xs">
@@ -151,7 +151,7 @@ const BlogPosts = () => {
         {loading ? (
           Array.from({ length: 2 }).map((_, i) => (
             <article
-              key={`skeleton-${i}`}
+              key={`Ho_Bl_Sk_${i}`}
               className="flex max-w-xl animate-pulse flex-col items-start justify-between px-5"
             >
               {/* Meta Info */}
