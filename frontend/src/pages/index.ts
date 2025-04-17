@@ -1,0 +1,11 @@
+export { default as Index } from "./Index";
+export { default as VotePage } from "./VotePage";
+export { default as BlogsPage } from "./BlogsPage";
+export { default as Callback } from "./Callback";
+export { default as EventsPage } from "./EventsPage";
+export { default as SearchPage } from "./SearchPage";
+export { default as DonatePage } from "./DonatePage";
+export { default as NotFoundPage } from "./NotFoundPage";
+export { default as BlogDetailPage } from "./BlogDetailPage";
+export { default as EventDetailsPage } from "./EventDetailsPage";
+export { default as EventCandidateDetailsPage } from "./EventCandidateDetailsPage";

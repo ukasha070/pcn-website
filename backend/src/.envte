@@ -1,0 +1,17 @@
+ 
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_HOST_USER=ukashakats1@gmail.com
+EMAIL_HOST_PASSWORD=adnl fnmh lzei fdox
+EMAIL_USE_TLS=True
+DEFAULT_FROM_EMAIL=ukashakats1@gmail.com
+
+
+PESAPAL_CONSUMER_KEY="1JZWa5frzEtqPCTSTTQjADhN+3+QEK5H"
+PESAPAL_CONSUMER_SECRET="Lw5Il0XQT0d4gW8DdJB3dCffuHo="
+PESAPAL_IPN_URL="6e76309c-1b75-428b-9086-dbf1842c7eeb"
+
+DJANGO_SECRET_KEY="u2oge8^c(hd&_$h)ycd=zbl2u14yd7y=v_kdt*0p5)k(q7ln9@"
+
+# DJANGO_ENV='production'  
+DJANGO_ENV='development'  
