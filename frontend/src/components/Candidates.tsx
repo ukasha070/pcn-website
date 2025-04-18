@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { TYCandidate } from "@/lib/types";
-import { User2 } from "lucide-react";
 
 export const CandidateSkeleton = () => {
   return (
