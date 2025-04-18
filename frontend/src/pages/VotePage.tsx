@@ -74,7 +74,7 @@ const VotePage = () => {
 
       <Navbar viewNav />
 
-      <Container className="mb-0 p-0">
+      <Container className="mb-0 py-0">
         {loading ? (
           <div
             className={

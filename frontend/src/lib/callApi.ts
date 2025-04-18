@@ -1,5 +1,6 @@
-// src/lib/api/callApi.ts
-const baseApiUrl = import.meta.env.VITE_BASE_API_URL;
+import { baseUrl } from "./constants";
+
+const baseApiUrl = baseUrl;
 
 type HttpMethod = "GET" | "POST";
 

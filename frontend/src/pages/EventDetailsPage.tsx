@@ -88,7 +88,7 @@ export function AnlyticsTab() {
   };
 
   const options = {
-    indexAxis: "y" as "y",
+    indexAxis: "x" as "x",
     responsive: true,
     plugins: {
       legend: {
@@ -153,6 +153,7 @@ export function CandidatesTab() {
 
   return (
     <div className="my-10">
+      <p>Click on the photos to vote</p>
       {loading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           {Array.from({ length: 3 }).map((_, i) => (
@@ -170,12 +171,13 @@ export function CandidatesTab() {
           </div>
         </div>
       ) : (
-        <div className="grid md:grid-cols-2 xl:grid-cols-3">
-          {candidates &&
-            candidates.map((candidate) => (
+        candidates && (
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            {candidates.map((candidate) => (
               <Candidate key={candidate.slug} {...candidate} />
             ))}
-        </div>
+          </div>
+        )
       )}
     </div>
   );
@@ -310,7 +312,7 @@ const EventDetailsPage = () => {
               <section>
                 <div className="pt-10">
                   <h2 className="text-4xl capitalize mb-2">{event?.title}</h2>
-                  <span className="w-[4rem] rounded-full h-[.2rem] bg-primary block mb-10"></span>
+                  <span className="w-[4rem] rounded-full h-[.2rem] bg-primary block mb-10" />
 
                   <p className="block mt-5 text-lg">{event?.description}</p>
 

@@ -134,7 +134,7 @@
   }
 
   #markdown-content img{
-    @apply w-[85%] aspect-video mx-auto md:w-[75%]  
+    @apply w-[90%] aspect-video mx-auto md:w-[80%] object-cover  
   }
 
   article#markdown-content > p:first-of-type::first-letter {

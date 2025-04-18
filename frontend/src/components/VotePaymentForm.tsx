@@ -47,6 +47,8 @@ const VotePaymentForm: React.FC<props> = ({
         body: data,
       });
 
+      console.log(data);
+
       if (response) {
         proccedToPayment(
           response["order_tracking_id"] ? response["order_tracking_id"] : ""
@@ -60,11 +62,7 @@ const VotePaymentForm: React.FC<props> = ({
 
   return (
     <div>
-      <form
-        method="post"
-        onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-lg"
-      >
+      <form method="post" onSubmit={handleSubmit(onSubmit)}>
         {/* Candidate */}
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full px-3 mb-6 md:mb-0">
