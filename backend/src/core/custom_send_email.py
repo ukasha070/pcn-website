@@ -49,7 +49,7 @@ def send_newsletter_email(to_email, subject, recipient_name, body_content, cta_l
     )
 
 
-def send_email_message(to_email, subject, recipient_name, body_content, cta_link=None, cta_text=None, logo_url=None):
+def send_reply_email_message(to_email, subject, recipient_name, body_content, cta_link=None, cta_text=None, logo_url=None):
     context = {
         'subject': subject,
         'recipient_name': recipient_name,
@@ -71,7 +71,7 @@ def send_email_message(to_email, subject, recipient_name, body_content, cta_link
     )
 
 
-def send_vote_message(to_email, vote_count, recipient_name, body_content):
+def send_success_vote_message(to_email, vote_count, recipient_name, body_content):
     subject = f"Prosfyges Chritian Network, Votes were {vote_count}"
     context = {
         'subject': subject,

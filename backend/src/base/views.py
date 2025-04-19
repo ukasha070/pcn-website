@@ -2,6 +2,7 @@
 from .models import Message
 from django.db.models import Q
 from django.http import JsonResponse
+from django.conf import settings
 
 from rest_framework import status
 from rest_framework import generics
@@ -40,13 +41,13 @@ class SendMessageView(generics.CreateAPIView):
         message_data = MessageSerializer(message).data  # Already a dict
 
         send_html_email(
-            to_email="ukashakats1@gmail.com",
+            to_email=settings.FROM_EMAIL,
             subject="Email From Website",
             recipient_name=message_data['sender_name'],
             body_content=message_data['message'],
-            cta_link="https://celebrate-jesus.com/event",
+            cta_link="None",
             cta_text="View Event",
-            logo_url="https://yourdomain.com/static/logo.png"
+            logo_url="None"
         )
 
         return message

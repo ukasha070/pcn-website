@@ -7,7 +7,7 @@ from .models import BlogPost, Comment
 
 from .serializers import BlogPostSerializer, CommentSerializer
 
-from core.custom_send_email import send_email_message
+from core.custom_send_email import send_reply_email_message
 
 from django.core.cache import cache
 
@@ -60,7 +60,7 @@ class CommentCreateView(generics.CreateAPIView):
         if reply_obj:
             # Send an email notification to the person being replied to
             subject = "Prosfyges Comment reply"
-            send_email_message(
+            send_reply_email_message(
                 to_email=reply_obj.user_email,
                 subject=subject,
                 recipient_name=reply_obj.full_name,

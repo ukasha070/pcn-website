@@ -19,7 +19,7 @@ from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
-from core.custom_send_email import send_vote_message
+from core.custom_send_email import send_success_vote_message
 
 
 GET_PESAPAL_TRANSACTION_STATUS_URL = getattr(
@@ -71,7 +71,7 @@ class DonationCallbackAPIView(APIView):
                     Donation, order_tracking_id=order_tracking_id)
 
                 body_content = f"Hello {donation_obj.full_name}, \n we appeciate your effort we have received your donation of UGX {amount} \n\n Thank you soo much, we are reaching you very soon, if you have any concern email us back."
-                send_vote_message(
+                send_success_vote_message(
                     donation_obj.email, vote_count, donation_obj.full_name, body_content)
                 return Response({"message": "success", "votes": vote_count}, status=status.HTTP_200_OK)
 
@@ -205,7 +205,7 @@ class PaymentCallback(APIView):
 
                     body_content = f"Hello thank you {payment_obj.full_name}, \n You paid UGX {amount} which is worth to {vote_count} \n Your candidate {candidate_obj.full_name} has a total of {candidate_obj.vote_count} \n\n if you have any concern email us back. \n\n Payment reference is {order_tracking_id}"
 
-                    send_vote_message(
+                    send_success_vote_message(
                         payment_obj.email, vote_count, payment_obj.full_name, body_content)
 
                     return Response({"message": "success", "votes": vote_count, **return_data}, status=status.HTTP_200_OK)
