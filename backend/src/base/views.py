@@ -39,12 +39,12 @@ class SendMessageView(generics.CreateAPIView):
     def perform_create(self, serializer):
         message = serializer.save()
         message_data = MessageSerializer(message).data  # Already a dict
-
+        body_content = f"{message_data['message']} \n Mail be on ${sender_email}"
         send_html_email(
             to_email=settings.FROM_EMAIL,
             subject="Email From Website",
             recipient_name=message_data['sender_name'],
-            body_content=message_data['message'],
+            body_content=body_content,
             cta_link="None",
             cta_text="View Event",
             logo_url="None"
