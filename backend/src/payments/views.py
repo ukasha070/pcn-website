@@ -170,7 +170,7 @@ class PaymentCallback(APIView):
             })
             response.raise_for_status()
             data = response.json()
-            print("this is the data ", data, token)
+            # print("this is the data ", data, token)
 
         except requests.exceptions.RequestException as e:
             return Response({"error": str(e)}, status=status.HTTP_502_BAD_GATEWAY)
@@ -203,7 +203,7 @@ class PaymentCallback(APIView):
                     payment_obj.save()
                     candidate_obj.save()
 
-                    body_content = f"Hello thank you {payment_obj.full_name}, \n You paid UGX {amount} which is worth to {vote_count} \n Your candidate {candidate_obj.full_name} has a total of {candidate_obj.vote_count} \n\n if you have any concern email us back."
+                    body_content = f"Hello thank you {payment_obj.full_name}, \n You paid UGX {amount} which is worth to {vote_count} \n Your candidate {candidate_obj.full_name} has a total of {candidate_obj.vote_count} \n\n if you have any concern email us back. \n\n Payment reference is {order_tracking_id}"
 
                     send_vote_message(
                         payment_obj.email, vote_count, payment_obj.full_name, body_content)

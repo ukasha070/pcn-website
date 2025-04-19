@@ -17,6 +17,7 @@ export async function callApi<TResponse = any, TRequest = any>({
   body,
   headers = {},
 }: ApiOptions<TRequest>): Promise<TResponse> {
+  console.log(baseApiUrl);
   try {
     const response = await fetch(`${baseApiUrl}${endpoint}`, {
       method,

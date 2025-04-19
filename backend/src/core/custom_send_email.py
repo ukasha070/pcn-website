@@ -21,7 +21,7 @@ def send_html_email(to_email, subject, recipient_name, body_content, cta_link=No
     email = EmailMultiAlternatives(
         subject=subject,
         body=body_content,  # Fallback plain-text
-        from_email=settings.DEFAULT_FROM_EMAIL,
+        from_email=settings.FROM_EMAIL,
         to=[to_email],
     )
     email.attach_alternative(html_content, "text/html")
@@ -43,7 +43,7 @@ def send_newsletter_email(to_email, subject, recipient_name, body_content, cta_l
     send_mail(
         subject,
         message,
-        'ukashakats1@gmail.com',
+        settings.FROM_EMAIL,
         [to_email],
         html_message=message,
     )
@@ -60,11 +60,12 @@ def send_email_message(to_email, subject, recipient_name, body_content, cta_link
     }
 
     message = render_to_string('emails/reply.html', context)
+    send_mail()
 
     send_mail(
         subject,
         message,
-        'ukashakats1@gmail.com',
+        settings.FROM_EMAIL,
         [to_email],
         html_message=message,
     )
@@ -83,7 +84,7 @@ def send_vote_message(to_email, vote_count, recipient_name, body_content):
     send_mail(
         subject,
         message,
-        'ukashakats1@gmail.com',
+        settings.FROM_EMAIL,
         [to_email],
         html_message=message,
     )

@@ -137,7 +137,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'assets']  # for development
+STATICFILES_DIRS = [BASE_DIR / '../../frontend/dist/assets']  # for development
 STATIC_ROOT = BASE_DIR / 'staticfiles'    # for collectstatic in production
 
 # Media files (uploads)
@@ -197,6 +197,7 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+FROM_EMAIL = 'mail@prosfyges-christian-network.org'
 
 CACHES = {
     "default": {

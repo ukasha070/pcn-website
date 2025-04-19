@@ -37,10 +37,13 @@ class Payment(models.Model):
         max_length=100, null=True, blank=True)
     order_tracking_id = models.CharField(max_length=100, null=True, blank=True)
 
-    # def clean(self):
-    # if self.amount % Decimal('10.00') != 0:
-    #     raise ValidationError(
-    #         {'amount': 'Amount must be a multiple of 10.'})
+    def clean(self):
+        if self.amount < Decimal('1000.00'):
+            raise ValidationError(
+                {'amount': 'Amount must be greater than or equal to 1000.'})
+        if self.amount % Decimal('1000.00') != 0:
+            raise ValidationError(
+                {'amount': 'Amount must be a multiple of 1000.'})
 
     def __str__(self):
         return f"{self.full_name} - {self.amount} {self.currency}"
